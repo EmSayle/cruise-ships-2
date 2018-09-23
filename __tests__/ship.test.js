@@ -1,5 +1,6 @@
 const Ship = require('../src/ship');
 const Port = require('../src/port');
+const Itinerary = require('../src/itinerary');
 
 // let ship = null;
 // let port = null;
@@ -12,7 +13,7 @@ const Port = require('../src/port');
 describe('Ship', () => {
   it('creates an instance of Ship', () => {
     const ship = new Ship('Lisbon');
-    expect(ship).toBeInstanceOf(Object);
+    expect(new Ship()).toBeInstanceOf(Object);
   });
   // in set up create a new instance of port and set it to a port name 'Lisbon'
   // then create a new ship and pass in the new port object giving it the currentPort 'Lisbon'
@@ -33,6 +34,8 @@ describe('setSail', () => {
     const ship = new Ship(port);
     ship.setSail();
     expect(ship.currentPort).toBeFalsy();
+    expect(ship.previousPort).toBe(port);
+    // updated to expect that a previousPort is now set to the port it just left
   });
 });
 
