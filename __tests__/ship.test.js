@@ -14,3 +14,10 @@ describe('Ship', () => {
     expect(ship.startingPort).toEqual('Lisbon');
   });
 });
+
+describe('setSail', () => {
+  it('returns a boolean when the ship has set sail', () => {
+    ship.setSail();
+    expect(ship.startingPort).toEqual(false);
+  });
+});
