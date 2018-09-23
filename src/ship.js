@@ -1,9 +1,17 @@
-function Ship(startingPort) {
-  this.startingPort = startingPort;
+function Ship(currentPort) {
+  this.currentPort = currentPort;
 }
 
-module.exports = Ship;
-
+// create a setSail function so that the ship is no longer at currentPort
 Ship.prototype.setSail = function setSail() {
-  return this.startingPort = false;
+  return this.currentPort = false;
 };
+
+// create dock function so that the ship can dock into a new port
+// pass in the dock object as the argument
+Ship.prototype.dock = function dock(port) {
+  return this.currentPort = port;
+};
+
+
+module.exports = Ship;
