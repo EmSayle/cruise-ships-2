@@ -1,18 +1,26 @@
-function Ship(currentPort) {
-  this.currentPort = currentPort;
+function Ship(itinerary) {
+  this.itinerary = itinerary;
+  this.currentPort = itinerary.ports[0];
   this.previousPort = null;
 }
 
-// create a setSail function so that the ship is no longer at currentPort
 Ship.prototype.setSail = function setSail() {
+  const itinerary = this.itinerary;
+  const currentPortIndex = itinerary.ports.indexOf(this.currentPort);
+
+  if (currentPortIndex === (itinerary.ports.length - 1)) {
+    throw new Error('End of itinerary reached');
+  }
+
   this.previousPort = this.currentPort;
-  // after setSail is called the previousPort is now set to currentPort(where we just left)
+  this.currentPort = null;
 };
 
-// create dock function so that the ship can dock into a new port
-// pass in the dock object as the argument
-Ship.prototype.dock = function dock(port) {
-  this.currentPort = port;
+Ship.prototype.dock = function dock() {
+  const itinerary = this.itinerary;
+  const previousPortIndex = itinerary.ports.indexOf(this.previousPort);
+
+  this.currentPort = itinerary.ports[previousPortIndex + 1];
 };
 
 
