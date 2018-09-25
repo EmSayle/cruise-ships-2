@@ -21,4 +21,14 @@ describe('Port', () => {
     port.addShip(ship);
     expect(port.ships).toContain(ship);
   });
+  it('can remove a ship', () => {
+    const titanic = {};
+    const maryRose = {};
+
+    port.addShip(titanic);
+    port.addShip(maryRose);
+    port.removeShip(maryRose);
+
+    expect(port.ships).toEqual([titanic]);
+  });
 });
