@@ -10,8 +10,20 @@ describe('Ship', () => {
     let itinerary;
 
     beforeEach(() => {
-      lisbon = new Port('Lisbon');
-      seville = new Port('Seville');
+      const port = {
+        removeShip: jest.fn(),
+        addShip: jest.fn(),
+      };
+      lisbon = {
+        ...port,
+        name: 'Lisbon',
+        ships: [],
+      };
+      seville = {
+        ...port,
+        name: 'Seville',
+        ships: [],
+      };
       itinerary = new Itinerary([lisbon, seville]);
       maryRose = new Ship(itinerary);
     });
@@ -28,19 +40,19 @@ describe('Ship', () => {
       maryRose.setSail();
 
       expect(maryRose.currentPort).toBeFalsy();
-      expect(lisbon.ships).not.toContain(maryRose);
+      expect(lisbon.removeShip).toHaveBeenCalledWith(maryRose);
     });
 
-    it('checks that the ship can dock in a new port', () => {
+    it('ship can dock in a different port', () => {
       maryRose.setSail();
       maryRose.dock();
 
       expect(maryRose.currentPort).toEqual(seville);
-      expect(seville.ships).toContain(maryRose);
+      expect(seville.addShip).toHaveBeenCalledWith(maryRose);
     });
 
     it('gets added to port on instantiation', () => {
-      expect(lisbon.ships).toContain(maryRose);
+      expect(lisbon.addShip).toHaveBeenCalledWith(maryRose);
     });
   });
 
