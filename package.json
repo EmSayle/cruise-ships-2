@@ -15,5 +15,8 @@
     "eslint-plugin-babel": "^5.2.0",
     "eslint-plugin-import": "^2.14.0",
     "jest": "^23.6.0"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.0"
   }
 }
